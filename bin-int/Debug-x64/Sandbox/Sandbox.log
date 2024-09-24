@@ -1,1 +1,5 @@
-﻿  Sandbox.vcxproj -> C:\ahmetefe\Programming\VS22\Projects\Theta\bin\Debug-x64\Sandbox\Sandbox.exe
+﻿  SandboxApp.cpp
+C:\ahmetefe\Programming\VS22\Projects\Theta\Theta\src\Theta\EntryPoint.h(7,6): warning C4326: return type of 'main' should be 'int' instead of 'void'
+  (compiling source file 'src/SandboxApp.cpp')
+  
+  Sandbox.vcxproj -> C:\ahmetefe\Programming\VS22\Projects\Theta\bin\Debug-x64\Sandbox\Sandbox.exe
