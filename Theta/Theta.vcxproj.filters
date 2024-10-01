@@ -19,6 +19,8 @@
     <ClInclude Include="src\Theta\Log.h">
       <Filter>Theta</Filter>
     </ClInclude>
+    <ClInclude Include="src\Theta\Events\Event.h" />
+    <ClInclude Include="src\Theta\Events\AppllicationEvent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Theta\Application.cpp">

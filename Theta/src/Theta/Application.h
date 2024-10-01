@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Core.h"
+#include "Events/Event.h"
 
 namespace Theta {
 
@@ -11,10 +12,6 @@ namespace Theta {
 		Application();
 		virtual ~Application();
 		void Run();
-
-
-	private:
-
 
 	};
 

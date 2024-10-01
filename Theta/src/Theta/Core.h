@@ -10,3 +10,4 @@
 	#error Theta only support Windows OS!
 #endif // TH_PLATFORM_WINDOWS
 
+#define BIT(x) (1 << x)

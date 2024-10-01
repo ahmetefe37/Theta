@@ -4,7 +4,7 @@
 // -----------------------------------
 #include "Theta/Application.h"
 
-// ----- LOGGING ------
+// ----- LOGGING ----------
 // ------------------------
 #include "Theta/Log.h"
 

@@ -1,7 +1,8 @@
- workspace "Theta"
+workspace "Theta"
 	architecture "x64"
 
-	configurations {
+	configurations
+	{
 		"Debug",
 		"Release",
 		"Dist"
@@ -17,28 +18,33 @@ project "Theta"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
-	files {
+	files
+	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp"
 	}
 
-	includedirs {
+	includedirs
+	{
+		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include"
 	}
 
 	filter "system:windows"
 		cppdialect "C++17"
 		staticruntime "On"
-		systemversion "10.0.22621.0"
+		systemversion "latest"
 
-	defines {
-		"TH_PLATFORM_WINDOWS",
-		"TH_BUILD_DLL"	
-	}
+		defines
+		{
+			"TH_PLATFORM_WINDOWS",
+			"TH_BUILD_DLL"
+		}
 
-	postbuildcommands {
-		("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
-	}
+		postbuildcommands
+		{
+			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
+		}
 
 	filter "configurations:Debug"
 		defines "TH_DEBUG"
@@ -52,37 +58,40 @@ project "Theta"
 		defines "TH_DIST"
 		optimize "On"
 
-
-	
 project "Sandbox"
+	location "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
-	files {
+	files
+	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp"
 	}
 
-	includedirs {
+	includedirs
+	{
 		"Theta/vendor/spdlog/include",
 		"Theta/src"
 	}
 
-	links {
+	links
+	{
 		"Theta"
 	}
 
 	filter "system:windows"
 		cppdialect "C++17"
 		staticruntime "On"
-		systemversion "10.0.22621.0"
+		systemversion "latest"
 
-	defines {
-		"TH_PLATFORM_WINDOWS"
-	}
+		defines
+		{
+			"TH_PLATFORM_WINDOWS"
+		}
 
 	filter "configurations:Debug"
 		defines "TH_DEBUG"
@@ -95,4 +104,3 @@ project "Sandbox"
 	filter "configurations:Dist"
 		defines "TH_DIST"
 		optimize "On"
-
