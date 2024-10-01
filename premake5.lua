@@ -18,6 +18,9 @@ project "Theta"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
+	pchheader "thpch.h"
+	pchsource "Theta/src/thpch.cpp"
+
 	files
 	{
 		"%{prj.name}/src/**.h",

@@ -2,8 +2,6 @@
 
 #include "Event.h"
 
-#include <sstream>
-
 namespace Theta {
 
 	class THETA_API MouseMovedEvent : public Event
