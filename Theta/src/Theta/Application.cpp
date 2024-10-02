@@ -2,16 +2,13 @@
 
 #include "Application.h"
 #include "Events/AppllicationEvent.h"
-#include "Theta/Log.h"
-
-#include "iostream"
 
 namespace Theta 
 {
 
 	Application::Application()
 	{
-
+		m_Window = std::unique_ptr<Window>(Window::Create());
 	}
 	
 	Application::~Application()
@@ -21,22 +18,14 @@ namespace Theta
 
 	void Application::Run()
 	{
-		WindowResizeEvent e(1366,768);
+		/*WindowResizeEvent e(1366,768);
 		TH_INFO("---------------------------------------");
-		TH_INFO("App Resolution : x = {0}", e.GetWidth());
-		TH_INFO("App Resolution : y = {0}", e.GetHeight());
-		TH_INFO("---------------------------------------");
+		TH_INFO("Window Resolution : {0} - {1}", e.GetWidth(), e.GetHeight());
+		TH_INFO("---------------------------------------");*/
 
-		
-		if (e.IsInCategory(EventCategoryApplication)) {
-			TH_WARN(e.ToString());
+		while (m_Running)
+		{
+			m_Window->OnUpdate();
 		}
-		if (e.IsInCategory(EventCategoryInput)) {
-			TH_WARN(e.ToString());
-		}
-
-
-
-		while (true);
 	}
 }

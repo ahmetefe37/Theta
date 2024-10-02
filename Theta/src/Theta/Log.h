@@ -1,11 +1,9 @@
 #pragma once
 
 #include "Core.h"
-
-#pragma warning(push, 0)
 #include <spdlog/spdlog.h>
 #include <spdlog/fmt/ostr.h>
-#pragma warning(pop)
+
 
 namespace Theta
 { 
@@ -23,7 +21,7 @@ namespace Theta
 		static std::shared_ptr<spdlog::logger> s_ClientLogger;
 	};
 
-}
+
 
 // Core Logging Macros
 #define TH_CORE_TRACE(...)	::Theta::Log::GetCoreLogger()->trace(__VA_ARGS__)
@@ -37,3 +35,5 @@ namespace Theta
 #define TH_WARN(...)		::Theta::Log::GetClientLogger()->warn(__VA_ARGS__)
 #define TH_ERROR(...)		::Theta::Log::GetClientLogger()->error(__VA_ARGS__)
 #define TH_FATAL(...)		::Theta::Log::GetClientLogger()->fatal(__VA_ARGS__)
+
+}

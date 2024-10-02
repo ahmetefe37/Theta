@@ -12,8 +12,8 @@
 #include <unordered_map>
 #include <unordered_set>
 
+#include "Theta/Log.h"
 
 #ifdef TH_PLATFORM_WINDOWS
-	#include "windowsx.h"
-
+#include <Windows.h>
 #endif

@@ -1,3 +1,4 @@
+#include "thpch.h"
 #include "Theta.h"
 
 class Sandbox : public Theta::Application

@@ -7,6 +7,12 @@
     <Filter Include="Theta\Events">
       <UniqueIdentifier>{5FD61C47-4B39-ACEB-F4BE-E4A1E000786E}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Theta\Platforms">
+      <UniqueIdentifier>{E2230857-4EAF-751B-57C0-F80FC3CAD11B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Theta\Platforms\Windows">
+      <UniqueIdentifier>{1C90643E-88C7-ACD5-91D1-10F9FD87D3CE}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Theta.h" />
@@ -34,6 +40,12 @@
     <ClInclude Include="src\Theta\Log.h">
       <Filter>Theta</Filter>
     </ClInclude>
+    <ClInclude Include="src\Theta\Platforms\Windows\WindowsWindow.h">
+      <Filter>Theta\Platforms\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Theta\Window.h">
+      <Filter>Theta</Filter>
+    </ClInclude>
     <ClInclude Include="src\thpch.h" />
   </ItemGroup>
   <ItemGroup>
@@ -42,6 +54,9 @@
     </ClCompile>
     <ClCompile Include="src\Theta\Log.cpp">
       <Filter>Theta</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Theta\Platforms\Windows\WindowsWindow.cpp">
+      <Filter>Theta\Platforms\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\thpch.cpp" />
   </ItemGroup>

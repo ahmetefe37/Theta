@@ -10,6 +10,12 @@ workspace "Theta"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+-- Include directories relative to root folder (solution directory)
+IncludeDir = {}
+IncludeDir["GLFW"] = "Theta/vendor/GLFW/include"
+
+include "Theta/vendor/GLFW"
+
 project "Theta"
 	location "Theta"
 	kind "SharedLib"
@@ -27,10 +33,24 @@ project "Theta"
 		"%{prj.name}/src/**.cpp"
 	}
 
+	defines 
+	{
+		"_CRT_SECURE_NO_WARNINGS",
+		"GLFW_INCLUDE_NONE"
+	}
+
 	includedirs
 	{
 		"%{prj.name}/src",
-		"%{prj.name}/vendor/spdlog/include"
+		"%{prj.name}/vendor/spdlog/include",
+		"%{IncludeDir.GLFW}"
+	}
+
+	links 
+	{ 
+		"GLFW",
+		"opengl32.lib",
+		"glu32.lib"
 	}
 
 	filter "system:windows"

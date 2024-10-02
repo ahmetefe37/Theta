@@ -4,7 +4,7 @@
 
 extern Theta::Application* Theta::CreateApplication();
 
-void main(int argc, char** argv)
+int main(int argc, char** argv)
 {
 	Theta::Log::Init();
 	TH_CORE_WARN("Entity Point is Initialized!");
