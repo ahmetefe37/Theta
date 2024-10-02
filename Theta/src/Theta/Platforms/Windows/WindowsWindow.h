@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Theta/Window.h"
+
+#include "glad/glad.h"
 #include "GLFW/glfw3.h"
 
 namespace Theta

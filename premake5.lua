@@ -13,10 +13,10 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 -- Include directories relative to root folder (solution directory)
 IncludeDir = {}
 IncludeDir["GLFW"] = "Theta/vendor/GLFW/include"
-IncludeDir["GLAD"] = "Theta/vendor/GLAD/include"
+IncludeDir["Glad"] = "Theta/vendor/GLAD/include"
 
 include "Theta/vendor/GLFW"
-include "Theta/vendor/GLAD"
+include "Theta/vendor/Glad"
 
 project "Theta"
 	location "Theta"
@@ -35,24 +35,18 @@ project "Theta"
 		"%{prj.name}/src/**.cpp"
 	}
 
-	defines 
-	{
-		"_CRT_SECURE_NO_WARNINGS",
-		"GLFW_INCLUDE_NONE"
-	}
-
 	includedirs
 	{
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
-		"%{IncludeDir.GLFW}"
-		"%{IncludeDir.GLAD}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}"
 	}
 
 	links 
 	{ 
 		"GLFW",
-		"GLAD",
+		"Glad",
 		"opengl32.lib",
 		"Theta/vendor/GLFW/glfw3dll.lib"
 	}
@@ -65,7 +59,8 @@ project "Theta"
 		defines
 		{
 			"TH_PLATFORM_WINDOWS",
-			"TH_BUILD_DLL"
+			"TH_BUILD_DLL",
+			"GLFW_INCLUDE_NONE"
 		}
 
 		postbuildcommands
