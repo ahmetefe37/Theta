@@ -13,8 +13,10 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 -- Include directories relative to root folder (solution directory)
 IncludeDir = {}
 IncludeDir["GLFW"] = "Theta/vendor/GLFW/include"
+IncludeDir["GLAD"] = "Theta/vendor/GLAD/include"
 
 include "Theta/vendor/GLFW"
+include "Theta/vendor/GLAD"
 
 project "Theta"
 	location "Theta"
@@ -44,13 +46,15 @@ project "Theta"
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
 		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLAD}"
 	}
 
 	links 
 	{ 
 		"GLFW",
+		"GLAD",
 		"opengl32.lib",
-		"glu32.lib"
+		"Theta/vendor/GLFW/glfw3dll.lib"
 	}
 
 	filter "system:windows"
