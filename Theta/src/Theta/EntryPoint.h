@@ -13,6 +13,27 @@ int main(int argc, char** argv)
 	auto app = Theta::CreateApplication();
 	app->Run();
 	delete app;
+
+	return 0;
+}
+
+#endif
+
+#ifdef TH_PLATFORM_LINUX
+
+extern Theta::Application* Theta::CreateApplication();
+
+int main(int argc, char** argv)
+{
+    Theta::Log::Init();
+    TH_CORE_WARN("Entity Point is Initialized!");
+    TH_WARN("Client Logger is Activated!");
+
+    auto app = Theta::CreateApplication();
+    app->Run();
+    delete app;
+
+    return 0;
 }
 
 #endif

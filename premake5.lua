@@ -13,7 +13,7 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 -- Include directories relative to root folder (solution directory)
 IncludeDir = {}
 IncludeDir["GLFW"] = "Theta/vendor/GLFW/include"
-IncludeDir["Glad"] = "Theta/vendor/GLAD/include"
+IncludeDir["Glad"] = "Theta/vendor/Glad/include"
 
 include "Theta/vendor/GLFW"
 include "Theta/vendor/Glad"
@@ -43,19 +43,52 @@ project "Theta"
 		"%{IncludeDir.Glad}"
 	}
 
-	links 
-	{ 
-		"GLFW",
-		"Glad",
-		"opengl32.lib",
-		"Theta/vendor/GLFW/glfw3dll.lib"
-	}
+	filter "system:linux"
+		cppdialect "C++17"
+		staticruntime "On"
+		systemversion "latest"
+
+		libdirs
+		{
+			"Theta/vendor/GLFW/src"
+		}
+
+		links 
+		{ 
+			"Glad",           -- If you're using Glad
+			"glfw3",           -- GLFW for OpenGL
+			"GL",             -- OpenGL
+			"GLU",
+			"dl",             -- Dynamic linking
+			"pthread"         -- POSIX threads
+
+		}
+
+		defines
+		{
+			"TH_PLATFORM_LINUX",
+			"GLFW_INCLUDE_NONE"
+		}
+
+		buildoptions { "-fPIC" }  -- Position Independent Code is necessary for shared libraries on Linux
+        postbuildcommands 
+		{
+			 "{COPY} %{cfg.buildtarget.relpath} ../bin/%{cfg.buildcfg}" 
+		}
 
 	filter "system:windows"
 		cppdialect "C++17"
 		staticruntime "On"
 		systemversion "latest"
 
+		links 
+		{ 
+			"GLFW",
+			"Glad",
+			"opengl32.lib",
+			"Theta/vendor/GLFW/glfw3dll.lib"
+		}
+		
 		defines
 		{
 			"TH_PLATFORM_WINDOWS",
@@ -67,6 +100,7 @@ project "Theta"
 		{
 			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
 		}
+	
 
 	filter "configurations:Debug"
 		defines "TH_DEBUG"
@@ -97,7 +131,13 @@ project "Sandbox"
 	includedirs
 	{
 		"Theta/vendor/spdlog/include",
-		"Theta/src"
+		"Theta/src",
+		"Theta/vendor/GLFW/include",
+	}
+
+	libdirs
+	{
+		"Theta/vendor/GLFW/src"
 	}
 
 	links
@@ -115,6 +155,29 @@ project "Sandbox"
 			"TH_PLATFORM_WINDOWS"
 		}
 
+	
+	filter "system:linux"
+        cppdialect "C++17"
+        staticruntime "On"
+
+        defines
+        {
+            "TH_PLATFORM_LINUX"
+        }
+
+        links 
+		{ 
+			"Glad",           -- If you're using Glad
+			"glfw",           -- GLFW for OpenGL
+			"GL",             -- OpenGL
+			"dl",             -- Dynamic linking
+			"pthread"         -- POSIX threads
+		}
+
+        -- Ensure Position Independent Code (PIC) is used for shared libraries
+        buildoptions { "-fPIC" }
+
+		
 	filter "configurations:Debug"
 		defines "TH_DEBUG"
 		symbols "On"
